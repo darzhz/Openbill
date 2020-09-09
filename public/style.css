@@ -1,0 +1,98 @@
+.qua {
+    height: 30px;
+    column-width: 250px;
+}
+
+th {
+    width: 100vh;
+    column-width: 100vh;
+    border-collapse: collapse;
+}
+
+td {
+    border: none;
+}
+
+table,
+th,
+td {
+    border-left: none;
+    border-right: none;
+    border-top: 4px solid black;
+}
+
+#title {
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 100;
+}
+
+.head p {
+    padding-left: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    margin: none;
+    padding-bottom: none;
+    padding-top: none;
+}
+
+.head h1 {
+    font-family: 'Lobster', cursive;
+    padding-left: 25px;
+    margin: none;
+    font-size: 45px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "stuff  morestuff";
+    column-fill: 10px;
+}
+
+.add {
+    display: grid;
+    grid-area: morestuff;
+    text-align: center;
+    align-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.endpt {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "adto  money";
+    column-fill: 10px;
+}
+
+.amt p {
+    grid-area: money;
+    padding-left: 45px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+#toad {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    padding-left: 25px;
+}
+
+#you {
+    font-family: 'Lobster', cursive;
+    padding-left: 25px;
+}
+
+#trade {
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Open sans';
+    opacity: 20%;
+}

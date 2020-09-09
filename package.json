@@ -1,0 +1,21 @@
+{
+  "name": "openbill",
+  "version": "1.0.0",
+  "description": "billing point of sale and inventory software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run":"start"
+  },
+  "keywords": [
+    "sales",
+    "POS",
+    "billing"
+  ],
+  "author": "Darsh shyam kumar (darzhz)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0"
+  }
+}

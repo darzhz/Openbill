@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="icon" href="icons/default.ico">
+    <link rel="stylesheet" href="icons/awesome/a/css/all.css">
+</head>
+<style>
+    a {
+        position: fixed;
+        font-size: xx-large;
+        color: #171414;
+        left: 1vw;
+        top: 1vh;
+    }
+    .table {
+    top: 0vh;
+    position: inherit;
+    margin-top: 10vh;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: large;
+    font-weight: lighter;
+    width: 97vw;
+    }
+    .table td{
+    align-items: center;
+    text-align: center;
+    border-spacing: 1px;
+}
+.table th{
+    align-items: center;
+    text-align: center;
+    border-spacing: 1px;
+    width: 97vw;
+}
+.table tr:nth-child(odd){
+    background-color: #29f4cab3;
+}
+.table tr:nth-child(even){
+    background-color: #bcfff196;
+}
+</style>
+<body>
+    <nav>
+        <div class="donut">
+            <!-- <img src="icons/menu.png" class="donut"> -->
+            <a href="index.html"> <i class="fas fa-backspace" class="donut"></i></a>
+        </div>
+            <div id="tradeMark">
+                <img src="/icons/default.ico" id="tradeMark">
+            </div>
+    </nav>
+    <div class="table">
+        <table id="table">
+            <tr>
+            <th>product Name</th>
+            <th>code</th>
+            <th>price</th>
+            <th>retail</th>
+            <th>gst</th>
+            </tr>
+        </table>
+        <input type="text" id="search">
+        <button id="submit" type="submit">Update</button>
+    </div>
+    
+    <script src="scripts/menu.js"></script>
+    <script src="scripts/Newtem.js"></script>
+</body>
+</html>

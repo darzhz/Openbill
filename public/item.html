@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="icon" href="icons/default.ico">
+    <link rel="stylesheet" href="icons/awesome/a/css/all.css">
+</head>
+<style>
+    .input {
+    margin: 0;
+    padding: 0 10px 0 10px;
+    display: block;
+    align-items: center;
+    position: fixed;
+    top: 11vh;
+    left: 4vw;
+    background-color: #0000003b;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #1ecca86b, #24f6ca);
+    }
+    form {
+        font-family: lobster;
+        color: white;
+    }
+    form input{
+    background: #ffffff7a;
+    border: none;
+    border-radius: 25px;
+    width: 16vw;
+    height: 4vh;
+    text-align: center;
+    box-shadow: inset 0px 0px 4px 0px #a99b9b;
+    transition: width 0.5s ease-in-out;
+    font-family: inherit;
+    margin: 19px 0 7px 0;
+    }
+    form input:focus{
+        box-shadow: -1px -1px 13px 1px #57f1d1;
+        background-color: white;
+        width: 26vw;
+    }
+    a {
+        position: fixed;
+        font-size: xx-large;
+        color: #171414;
+        left: 1vw;
+        top: 1vh;
+    }
+    .table {
+        float: right;
+    top: 0vh;
+    position: inherit;
+    margin-top: 10vh;
+    margin-right: 10vw;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: large;
+    font-weight: lighter;
+    }
+    .table td{
+    align-items: center;
+    text-align: center;
+    border-spacing: 1px;
+}
+.table th{
+    align-items: center;
+    text-align: center;
+    border-spacing: 1px;
+    width: 10vw;
+}
+.table tr:nth-child(odd){
+    background-color: #29f4cab3;
+}
+.table tr:nth-child(even){
+    background-color: #bcfff196;
+}
+#out {
+  color: white;
+}
+</style>
+<body>
+    <nav>
+        <div class="donut">
+            <!-- <img src="icons/menu.png" class="donut"> -->
+            <a href="index.html"> <i class="fas fa-backspace" class="donut"></i></a>
+        </div>
+            <div id="tradeMark">
+                <img src="/icons/default.ico" id="tradeMark">
+            </div>
+    </nav>
+    <div class="input">
+    <form>
+       <input type="text" placeholder="product name" id="itemName"><br>
+        <input type="text" id="uniqCode" placeholder="product Code"><br>
+      <input type="number" id="price1" placeholder="price #1"><br>
+      <input type="number"  id="price2" placeholder="retail price"><br>
+     <input type="number" id="GST" placeholder="GST%">
+    </form>
+    </div>
+    <div class="table">
+        <table id="table">
+            <tr>
+            <th>product Name</th>
+            <th>code</th>
+            <th>price</th>
+            <th>retail</th>
+            <th>gst</th>
+            </tr>
+        </table>
+        <button id="submit" type="submit" onclick="additem()">Update</button>
+    </div>
+    <div id="out">
+      
+    </div>
+    
+    <script src="scripts/menu.js"></script>
+    <script src="scripts/item.js"></script>
+</body>
+</html>

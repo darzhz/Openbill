@@ -1,0 +1,123 @@
+@font-face{
+    font-family: lobster;
+    src: url('/fonts/lobster.ttf');
+}
+body{
+    margin: 0px;
+    background-color: darkgray;
+    /* background-image: url('https://source.unsplash.com/random/1280x720/?business'); */
+    background-image: url('/wallpaper/default.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.sub-menu {
+    display: block;
+    list-style: none;
+    text-align: center;
+    margin:0px;
+    padding: 0px;
+    width: 0px;
+    height: 100vh;
+    background-color: #0f1010;
+    box-shadow: 4px 1px 17px 0px #0f1010;
+    z-index: 1;
+    top: 2%;
+    right: 95%;
+    transition: all 0.5s ease-in-out;
+}
+.sub-menu li {
+    /* padding-top: 2.2rem; */
+    display: none;
+    height: 56px;
+    text-transform: capitalize;
+    font-family: lobster;
+    line-height: 56px;
+    color: aquamarine;
+    transition: all 0.5s ease-in-out;
+}
+.sub-menu li:hover{
+    background-color: darkcyan;
+}
+.donut  img{
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    cursor: pointer;
+    top: 2%;
+    right: 95%;
+    z-index: 112;
+    transition: all 0.5s ease-out;
+}
+.donut.open img{
+    transform: rotate(80deg);
+    transition: all 0.5s ease-in-out;
+}
+.sub-menu.oper {
+    display: block;
+    width: 250px;
+    transition: all 0.5s ease-in-out;
+}
+.sub-menu.oper li{
+    display: block;
+    transition: all 0.5s ease-in-out;
+}
+#set {
+    color: white;
+    display: block;
+    position: relative;
+    z-index: 114;
+    font-size: xx-large;
+    top: 13px;
+    float: right;
+    right: 2%;
+    text-shadow: -1px 2px 4px black;
+    opacity: 0.4;
+}
+#set:hover{
+    opacity: 1;
+}
+#firmName {
+    display: block;
+    position: fixed;
+    z-index: 114;
+    transform: translate(40vw, 28vh);
+    font-size: xxx-large;
+    /* text-align: center; */
+    font-family: lobster;
+    color: #2ef7ca;
+    text-shadow: -1px 1px 4px #191919;
+    margin: 0px;
+    padding: 0px;
+}
+#firmName p {
+    font-size: large;
+    margin: 0px;
+    padding: 0px;
+}
+#firmName h1 {
+    margin: 0px;
+    padding: 0px;
+}
+#tradeMark img {
+    display: block;
+    position: fixed;
+    z-index: 114;
+    height: 17%;
+    transform: translate(90vw, 87vh);
+    opacity: 0.5;
+}
+#code {
+    color: white;
+    display: block;
+    position: relative;
+    z-index: 114;
+    font-size: xx-large;
+    top: 60px;
+    float: right;
+    right: -2%;
+    text-shadow: -1px 2px 4px black;
+    opacity: 0.4;
+}
+#code:hover{
+    opacity: 1;
+}
