@@ -29,7 +29,7 @@ app.post('/find',(request,response) => {
     console.log(request.body["term"]);
     let word = request.body["term"];
     dataGo(word);
-    request.end();
+    //request.end();
 });
 app.get('/getb',(req,resp)=>{
   let len = currentSearch.length - 1;

@@ -39,10 +39,31 @@
     width: 97vw;
 }
 .table tr:nth-child(odd){
-    background-color: #29f4cab3;
+    background-color: blueviolet;
+    color: white;
 }
 .table tr:nth-child(even){
-    background-color: #bcfff196;
+    background-color: blueviolet;
+    color: white;
+}
+.table button{
+    background-color: blueviolet;
+    color: white;
+    font-weight: bolder;
+    box-shadow: 0px 1px 5px blueviolet;
+    border-color: transparent;
+}
+.table button:hover{
+    background-color: white;
+    color: blueviolet;
+    box-shadow: 0px 1px 5px white;
+}
+.table tbody{
+    background-color: darkturquoise;
+}
+#search {
+    position: relative;
+    margin-left: 52vw;
 }
 </style>
 <body>
@@ -63,6 +84,7 @@
             <th>price</th>
             <th>retail</th>
             <th>gst</th>
+            <!-- <button>+</button> -->
             </tr>
         </table>
         <input type="text" id="search">

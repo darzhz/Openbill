@@ -1,6 +1,7 @@
 // const { response } = require("express");
-
-function tabledatthing(name,code,p1,p2,gst){
+let button = document.getElementsByTagName("button");
+let cart = []
+function tabledatthing(name,code,p1,p2,gst,qid){
     let table = document.getElementById('table');
         let row = document.createElement("tr");
         let atr = document.createAttribute("class");
@@ -11,23 +12,33 @@ function tabledatthing(name,code,p1,p2,gst){
         let cell2 = document.createElement("td");
         let cell3 = document.createElement("td");
         let cell4 = document.createElement("td");
+        let button = document.createElement("button");
+        let id = document.createAttribute("id");
+        id.value = qid;
         let txt = document.createTextNode(name);
         let txt1 = document.createTextNode(code);
         let txt2 = document.createTextNode(p1);
         let txt3 = document.createTextNode(p2);
         let txt4 = document.createTextNode(gst);
+        let add = document.createTextNode("+");
         cell.appendChild(txt);
         cell1.appendChild(txt1);
         cell2.appendChild(txt2);
         cell3.appendChild(txt3);
         cell4.appendChild(txt4);
+        button.setAttributeNode(id);
+        button.append(add);
         row.appendChild(cell);
         row.appendChild(cell1);
         row.appendChild(cell2);
         row.appendChild(cell3);
         row.appendChild(cell4);
-
+        row.appendChild(button);
+        button.style.position = "relative";
+        button.style.float = "right";
         table.appendChild(row);
+        // console.log(id);
+        // test.push(id);
 }
 async function getdata(){
     const response = await fetch('/dat');
@@ -41,7 +52,8 @@ async function getdata(){
       let price = data[i]["price"];
       let retail = data[i]["retail"];
       let gst = data[i]["gst"];
-      console.log(data[i]["name"]);
+      let qid = data[i]._id;
+      // console.log("here is the id : "+qid);
       tabledatthing(name,code,price,retail,gst);
     }
 } 
@@ -79,8 +91,14 @@ async function findData(){
       let price = data[i]["price"];
       let retail = data[i]["retail"];
       let gst = data[i]["gst"];
-      tabledatthing(name,code,price,retail,gst);
-    }
+      let qid = data[i]["_id"]
+      tabledatthing(name,code,price,retail,gst,qid);
+        button[i].addEventListener('click',() => {
+          id = button[i].id;
+          console.log("clicked");
+          addToCart(id);
+    });
+}
 } 
 function remPrev(){
   let x = document.getElementsByClassName("dynaData");
@@ -89,4 +107,8 @@ function remPrev(){
   }else{
     console.log("allgood");
   }
+}
+function addToCart(id){
+  console.log(id+"added to cart");
+  cart.push(id);
 }
