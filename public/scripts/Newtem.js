@@ -121,15 +121,31 @@ function showCart(){
   for(i in cart){
     k[cart[i]]=(k[cart[i]]||0)+1;
    }
+   let table = document.createElement('table');
+   let attr = document.createAttribute('id');
+   attr.value = "qtyL";
+   table.setAttributeNode(attr);
   for(var j in k) {
-    console.log(j+" comes -> "+k[j]+" times");    //get this
+    console.log(j+" comes -> "+k[j]+" times"); 
+    let row = document.createElement('tr');
+    let cell1 = document.createElement('td');    //get this
+    let cell2 =document.createElement('td');
+    let text1 = document.createTextNode(j);
+    let text2 = document.createTextNode(k[j]);
+    cell1.appendChild(text1);
+    cell2.appendChild(text2);
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+    table.appendChild(row);
    }
+   liste.appendChild(table);
 }
 shoppy.addEventListener('click',() => {
+  let x = document.getElementById('qtyL');
+  if(x){
+    x.remove();
+  }
   showCart();
   liste.classList.toggle('open');
 });
-  
-let table = document.createElement('table');
-let row = document.createElement('tr');
-let cell = document.createElement('td');
+
