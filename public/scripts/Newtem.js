@@ -1,6 +1,9 @@
 // const { response } = require("express");
 let button = document.getElementsByTagName("button");
-let cart = []
+let cart = [];
+let list = [];
+let shoppy = document.getElementById('cart');
+let liste = document.querySelector('.list');
 function tabledatthing(name,code,p1,p2,gst,qid){
     let table = document.getElementById('table');
         let row = document.createElement("tr");
@@ -110,5 +113,23 @@ function remPrev(){
 }
 function addToCart(id){
   console.log(id+"added to cart");
-  cart.push(id);
+   cart.push(id); 
 }
+function showCart(){
+  console.log("here are the elements");
+  let k = {};
+  for(i in cart){
+    k[cart[i]]=(k[cart[i]]||0)+1;
+   }
+  for(var j in k) {
+    console.log(j+" comes -> "+k[j]+" times");    //get this
+   }
+}
+shoppy.addEventListener('click',() => {
+  showCart();
+  liste.classList.toggle('open');
+});
+  
+let table = document.createElement('table');
+let row = document.createElement('tr');
+let cell = document.createElement('td');

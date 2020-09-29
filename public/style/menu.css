@@ -2,6 +2,46 @@
     font-family: lobster;
     src: url('/fonts/lobster.ttf');
 }
+.list {
+    position: fixed;
+    height: 100vh;
+    z-index: 12;
+    background-color: rgba(31, 30, 29, 0.842);
+    /* display: flex; */
+    left: 100vw;
+    width: 0;
+    text-align: center;
+    border-radius: 1%;
+    display: block;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    color: white;
+}
+.list.open{
+    left: 50vw;
+    width: 50vw;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+#cart {
+    display: block;
+    position: fixed;
+    left: 91vw;
+    top: 91vh;
+    font-size: xx-large;
+    color: white;
+    text-shadow: 0 0 16px #926be2a8;
+    background-color: blueviolet;
+    border-radius: 38%;
+    width: 7vw;
+    height: 6vh;
+    z-index: 16;
+}
+#cart:hover{
+    color: blueviolet;
+    background-color: white;
+    text-shadow: 0 0 16px white;
+}
 body{
     margin: 0px;
     background-color: darkgray;
@@ -102,7 +142,7 @@ body{
 #tradeMark img {
     display: block;
     position: fixed;
-    z-index: 114;
+    z-index: 14;
     height: 17%;
     transform: translate(90vw, 87vh);
     opacity: 0.5;
