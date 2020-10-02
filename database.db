@@ -8,4 +8,5 @@
 {"name":"Meowth","Code":"Kt3","price":"100","retail":"500","gst":"12","_id":"JUH2zJWrmQG5Bl0Q"}
 {"name":"Kitty","Code":"Kt1","price":"50","retail":"60","gst":"12","_id":"L5wprtgcORLwjnWg"}
 {"name":"Garfield","Code":"Kt4","price":"600","retail":"250","gst":"12","_id":"MKrh2FU2H2w0DWJ2"}
+{"name":"secret_01","Code":"xyz_hi%darzh","price":"0","retail":"0","gst":"0","_id":"SKyW3pcWHp6GZ97P"}
 {"name":"Cat","Code":"Kt2","price":"30","retail":"50","gst":"12","_id":"b6tfP0sc85k4cI77"}

@@ -1,6 +1,7 @@
 const express = require('express');
 const dataStore = require('nedb');
 let currentSearch = [];
+let list = [];
 const { request, response } = require('express');
 const app = express();
 const database = new dataStore('database.db');
@@ -35,7 +36,7 @@ app.get('/getb',(req,resp)=>{
   let len = currentSearch.length - 1;
   resp.json(currentSearch[len]);
   resp.end();
-})
+});
  function dataGo(word){
   const pased =  new RegExp(word, "i");
   database.find({ "Code": { "$regex": pased } }, (err, doc) => {
@@ -46,3 +47,27 @@ app.get('/getb',(req,resp)=>{
       currentSearch.push(doc);
     });
 }
+//#region this stuff is pretty glitchy
+async function getdetails(word,dir){
+  database.find({ "_id": word }, (err, doc) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(doc);
+    list.push(doc);
+  });
+}
+app.post('/inlist',(request,response) => {
+  console.log("return request!");
+  console.log(request.body["term"]);
+  let word = request.body["term"];
+  getdetails(word,"_id");
+  //request.end();
+  response.end();
+});
+app.get('/getItem',(req,resp)=>{
+  let len = list.length - 1;
+  resp.json(list[len]);
+  resp.end();
+});
+//#endregion

@@ -4,6 +4,16 @@ let cart = [];
 let list = [];
 let shoppy = document.getElementById('cart');
 let liste = document.querySelector('.list');
+function wait(ms){
+  let now = Date.now()
+while(true){
+  let end = Date.now()
+  console.log("waiting");
+  if(end > now+ms){
+    break;
+  }
+}
+}
 function tabledatthing(name,code,p1,p2,gst,qid){
     let table = document.getElementById('table');
         let row = document.createElement("tr");
@@ -115,7 +125,7 @@ function addToCart(id){
   console.log(id+"added to cart");
    cart.push(id); 
 }
-function showCart(){
+async function showCart(){
   console.log("here are the elements");
   let k = {};
   for(i in cart){
@@ -125,26 +135,99 @@ function showCart(){
    let attr = document.createAttribute('id');
    attr.value = "qtyL";
    table.setAttributeNode(attr);
+   let headRow = document.createElement('tr');
+   let buttonRow = document.createElement('th');
+   let header1 = document.createElement('th');
+    let header2 =document.createElement('th');
+    let txt  = document.createTextNode('item');
+    let txt2 = document.createTextNode('qty');
+    let rm = document.createElement("button");
+    let rmf = document.createTextNode("-");
+        let id = document.createAttribute("id");
+        id.value = "qtyl";
+        rm.setAttributeNode(id);
+        rm.appendChild(rmf);
+        buttonRow.appendChild(rm);
+    header1.appendChild(txt);
+    header2.appendChild(txt2);
+    headRow.appendChild(buttonRow);
+    headRow.appendChild(header1);
+    headRow.appendChild(header2);
+    table.appendChild(headRow);
   for(var j in k) {
     console.log(j+" comes -> "+k[j]+" times"); 
     let row = document.createElement('tr');
     let cell1 = document.createElement('td');    //get this
     let cell2 =document.createElement('td');
-    let text1 = document.createTextNode(j);
+    //#region glichy region
+    let oterm = {"term":j};
+    await postServer(oterm,'/inlist');
+    wait(20);
+    const response = await fetch('/getItem');
+    let data = await response.json();
+    //console.log(data[0]["name"]);
+    let button = document.createElement("button");
+        let id = document.createAttribute("id");
+        id.value = data[0]["_id"];
+        let remove = document.createTextNode("x");
+    let text1 = document.createTextNode(data[0]["name"]);
+    //#endregion
     let text2 = document.createTextNode(k[j]);
+
     cell1.appendChild(text1);
     cell2.appendChild(text2);
+    button.setAttributeNode(id);
+    button.appendChild(remove);
+    row.appendChild(button);
     row.appendChild(cell1);
     row.appendChild(cell2);
     table.appendChild(row);
+    button.addEventListener("click",() => {
+      let x = document.getElementById('qtyL');
+      cart.pop(button.id);
+      if(x){
+        x.remove();
+      }
+      showCart();
+    });
+    rm.addEventListener('click',() => {
+      let x = document.getElementById('qtyL');
+      let len = cart.length;
+      for(let i = 0; i< len;i++){
+        cart.pop(i);
+      }
+      if(x){
+        x.remove();
+      }
+    });
    }
    liste.appendChild(table);
+   if(table.rows.length == 1){
+     let nothin = document.createTextNode('there\'s nothing here!');
+     let init = document.createElement('p');
+     let id = document.createAttribute('id');
+     let not = 'empty';
+     id.value = not;
+    init.setAttributeNode(id);
+     init.appendChild(nothin);
+     liste.appendChild(init);
+   }
 }
 shoppy.addEventListener('click',() => {
   let x = document.getElementById('qtyL');
+  let y = document.getElementById('empty');
+  let table = document.getElementsByTagName('table');
+  let tabLen = table.length;
   if(x){
     x.remove();
   }
+  if(y){
+    y.remove();
+  }
+  if(tabLen == 3){
+    table[tabLen-1].remove()
+  }
+
   showCart();
   liste.classList.toggle('open');
 });

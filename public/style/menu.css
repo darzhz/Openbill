@@ -16,16 +16,26 @@
     transition: all 0.5s ease-in-out;
     opacity: 0;
     color: white;
+    border-radius: 2% 0 0 2%;
 }
 .list.open{
     left: 50vw;
     width: 50vw;
     opacity: 1;
     transition: all 0.5s ease-in-out;
+    box-shadow: inset 11px 0px 20px 3px #00000075;
 }
 .list table{
     color: white;
     margin: 0 auto 0;
+    text-align: center;
+}
+.list button{
+    border-radius: 60%;
+    border: none;
+    color: white;
+    background-color: red;
+    font-weight: bolder;
 }
 #cart {
     display: block;
@@ -89,7 +99,7 @@ body{
     position: fixed;
     cursor: pointer;
     top: 2%;
-    right: 95%;
+    right: 94.5%;
     z-index: 112;
     transition: all 0.5s ease-out;
 }
@@ -105,6 +115,14 @@ body{
 .sub-menu.oper li{
     display: block;
     transition: all 0.5s ease-in-out;
+}
+.sub-menu.oper a{
+    width: inherit;
+    height: inherit;
+    list-style: none;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 #set {
     color: white;
