@@ -25,6 +25,12 @@
     transition: all 0.5s ease-in-out;
     box-shadow: inset 11px 0px 20px 3px #00000075;
 }
+#total {
+    position: fixed;
+    top: 60vh;
+    margin-left: 5%;
+    font-family: lobster;
+}
 .list table{
     color: white;
     margin: 0 auto 0;

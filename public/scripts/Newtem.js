@@ -1,7 +1,6 @@
 // const { response } = require("express");
 let button = document.getElementsByTagName("button");
 let cart = [];
-let list = [];
 let shoppy = document.getElementById('cart');
 let liste = document.querySelector('.list');
 function wait(ms){
@@ -173,7 +172,6 @@ async function showCart(){
     let text1 = document.createTextNode(data[0]["name"]);
     //#endregion
     let text2 = document.createTextNode(k[j]);
-
     cell1.appendChild(text1);
     cell2.appendChild(text2);
     button.setAttributeNode(id);
@@ -212,6 +210,30 @@ async function showCart(){
      init.appendChild(nothin);
      liste.appendChild(init);
    }
+   let totalNode = document.getElementById('total');
+   if(totalNode){
+     totalNode.remove();
+   }
+   let total = document.createElement('h1');
+   let attribut = document.createAttribute('id');
+   attribut.value = "total";
+   total.setAttributeNode(attribut);
+   let list = [];
+   for(let j in k){
+    let oterm = {"term":j};
+    await postServer(oterm,'/inlist');
+    wait(20);
+    const response = await fetch('/getItem');
+    let data = await response.json();
+    let priceProd = data[0]["price"];            //here is the price and 
+    let itemQty = k[j];                        //qty
+    list.push(priceProd*itemQty);
+   }
+   console.log(list);
+   let tt = list.reduce((a,b) => a+b ,0);
+   let amt = document.createTextNode("Total Amount : "+ tt);
+   total.appendChild(amt);
+   liste.appendChild(total);
 }
 shoppy.addEventListener('click',() => {
   let x = document.getElementById('qtyL');

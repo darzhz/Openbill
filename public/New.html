@@ -47,24 +47,38 @@
     color: white;
 }
 .table button{
-    background-color: blueviolet;
+    /* background-color: blueviolet;
     color: white;
     font-weight: bolder;
     box-shadow: 0px 1px 5px blueviolet;
-    border-color: transparent;
+    border-color: transparent; */
+    background: linear-gradient(6deg, #47e052, #19d5dea8);
+    color: #ffffffc7;
+    font-weight: bolder;
+    box-shadow: 0px 1px 5px blueviolet;
+    border: 1px solid;
+    border-radius: 22px;
 }
 .table button:hover{
+    border: none;
+    background: white;
     background-color: white;
     color: blueviolet;
     box-shadow: 0px 1px 5px white;
+    border-radius: 0;
+    width: 100%;
+    height: 1.8rem;
 }
-.table tbody{
-    background-color: darkturquoise;
+.table tr tbody{
+    background-color: #47e052a1;
 }
 #search {
     position: relative;
-    margin-left: 52vw;
-    border-radius: 6%;
+    /* margin-left: 52vw; */
+    width: -webkit-fill-available;
+    border-radius: 7px;
+    text-align: center;
+    height: 1.5rem;
     border: none;
     box-shadow: inset 0px 0px 4px 0px black
 }
@@ -87,11 +101,9 @@
             <th>price</th>
             <th>retail</th>
             <th>gst</th>
-            <!-- <button>+</button> -->
             </tr>
         </table>
-        <input type="text" id="search">
-        <button id="submit" type="submit">Update</button>
+        <input type="text" id="search" placeholder="search away...">
     </div>
     <div class="list">
         <h1 id='init'>Whats's in cart!</h1>
