@@ -25,11 +25,38 @@
     transition: all 0.5s ease-in-out;
     box-shadow: inset 11px 0px 20px 3px #00000075;
 }
+#settings{
+    float: right;
+    z-index: 16;
+    position: fixed;
+    top: 2vh;
+    right: 2vw;
+    font-size: larger;
+    color: white;
+    text-shadow: 0 0 7px black;
+}
+#settings:hover {
+    text-shadow: 0 0 7px blueviolet;
+}
+.extras {
+    position: fixed;
+    top: 91vh;
+    right: 24vw;
+    font-size: xx-large;
+}
+.extras i {
+    padding-left: 8vh;
+}
+.extras i:hover{
+    color: lime;
+    text-shadow: 0px 1px 4px #171414;
+}
 #total {
     position: fixed;
     top: 60vh;
     margin-left: 5%;
     font-family: lobster;
+    font-size: x-large;
 }
 .list table{
     color: white;

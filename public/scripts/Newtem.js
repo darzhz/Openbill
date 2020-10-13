@@ -219,20 +219,28 @@ async function showCart(){
    attribut.value = "total";
    total.setAttributeNode(attribut);
    let list = [];
+   let retail = [];
    for(let j in k){
     let oterm = {"term":j};
     await postServer(oterm,'/inlist');
     wait(20);
     const response = await fetch('/getItem');
     let data = await response.json();
-    let priceProd = data[0]["price"];            //here is the price and 
+    let priceBase = data[0]["price"];  
+    let priceRetail = data[0]["retail"];          //here is the price and 
     let itemQty = k[j];                        //qty
-    list.push(priceProd*itemQty);
+    list.push(priceBase*itemQty);
+    retail.push(priceRetail*itemQty);
    }
    console.log(list);
-   let tt = list.reduce((a,b) => a+b ,0);
-   let amt = document.createTextNode("Total Amount : "+ tt);
-   total.appendChild(amt);
+   let bt = list.reduce((a,b) => a+b ,0);
+   let rt = retail.reduce((a,b) => a+b,0);
+   let bAmt = document.createTextNode("base price : "+ bt);
+   let div = document.createElement('div');
+   let rAmt = document.createTextNode("retail : " + rt);
+   total.appendChild(bAmt);
+   div.appendChild(rAmt);
+   total.appendChild(div);
    liste.appendChild(total);
 }
 shoppy.addEventListener('click',() => {
