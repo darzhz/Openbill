@@ -220,6 +220,7 @@ async function showCart(){
    total.setAttributeNode(attribut);
    let list = [];
    let retail = [];
+   let gst = [];
    for(let j in k){
     let oterm = {"term":j};
     await postServer(oterm,'/inlist');
@@ -227,20 +228,42 @@ async function showCart(){
     const response = await fetch('/getItem');
     let data = await response.json();
     let priceBase = data[0]["price"];  
-    let priceRetail = data[0]["retail"];          //here is the price and 
+    let priceRetail = data[0]["retail"];
+    let gstPerc = data[0]["gst"];          //here is the price and 
     let itemQty = k[j];                        //qty
     list.push(priceBase*itemQty);
     retail.push(priceRetail*itemQty);
+    gst.push(gstPerc);
    }
-   console.log(list);
+   //console.log(list);
    let bt = list.reduce((a,b) => a+b ,0);
    let rt = retail.reduce((a,b) => a+b,0);
+   let redList = [];
+   for(let i = 0; i < gst.length; i++){
+     let val = (gst[i]/100)+1;
+     redList.push(val);
+   }
+   let totGst = redList.reduce((a,b) => Math.round((a+b)*100)/100/redList.length);
+   console.log(totGst+ " "+rt+ " "+bt);
+   let gTotal = rt*totGst;
+   let gst0 = Math.round((gTotal-rt)*100)/100;
+   let splitTax = Math.round(((gst0)/2)*100)/100;
    let bAmt = document.createTextNode("base price : "+ bt);
    let div = document.createElement('div');
+   let divOne = document.createElement('div');
+   let divTwo = document.createElement('div');
+   let granTotal = document.createTextNode("grand total : " +Math.round(gTotal));
+   let gstAmt = document.createTextNode(`Gst : ${gst0} Sgst: ${splitTax} Cgst: ${splitTax}`);
    let rAmt = document.createTextNode("retail : " + rt);
+   let pureProfit = rt - bt;
+   console.log(pureProfit);
    total.appendChild(bAmt);
    div.appendChild(rAmt);
+   divOne.appendChild(gstAmt);
+   divTwo.appendChild(granTotal);
    total.appendChild(div);
+   total.appendChild(divOne);
+   total.appendChild(divTwo);
    liste.appendChild(total);
 }
 shoppy.addEventListener('click',() => {
