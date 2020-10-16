@@ -53,16 +53,36 @@
 }
 #total {
     position: fixed;
-    top: 60vh;
-    margin-left: 5%;
-    font-family: lobster;
+    top: 67vh;
+    margin-left: 4%;
+    font-family: monospace;
+    font-size: medium;
+    text-align: left;
+    display: block;
+}
+#total div:last-child{
     font-size: x-large;
 }
 .list table{
     color: white;
     margin: 0 auto 0;
-    text-align: center;
+    text-align: justify;
+    display: inline-block;
+    height: 43vh;
+    overflow-y: scroll;
 }
+#qtyL::-webkit-scrollbar {
+    width: 0.3em;
+  }
+   
+  #qtyL::-webkit-scrollbar-track {
+    box-shadow: 0 0 3px 0px #16cf60;
+  }
+   
+  #qtyL::-webkit-scrollbar-thumb {
+    background-color: #916be1;
+    border-radius: 50px;
+  }
 .list button{
     border-radius: 60%;
     border: none;

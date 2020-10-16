@@ -182,7 +182,8 @@ async function showCart(){
     table.appendChild(row);
     button.addEventListener("click",() => {
       let x = document.getElementById('qtyL');
-      cart.pop(button.id);
+      let id =  cart.indexOf(button.id);
+      cart.pop(id);
       if(x){
         x.remove();
       }
@@ -243,26 +244,39 @@ async function showCart(){
      let val = (gst[i]/100)+1;
      redList.push(val);
    }
-   let totGst = redList.reduce((a,b) => Math.round((a+b)*100)/100/redList.length);
+   let totGst = redList.reduce((a,b) => (a+b))/redList.length;
    console.log(totGst+ " "+rt+ " "+bt);
+   console.log(redList);
    let gTotal = rt*totGst;
    let gst0 = Math.round((gTotal-rt)*100)/100;
    let splitTax = Math.round(((gst0)/2)*100)/100;
    let bAmt = document.createTextNode("base price : "+ bt);
    let div = document.createElement('div');
    let divOne = document.createElement('div');
+   let divOneByone = document.createElement('div');
+   let divOneBytwo = document.createElement('div');
+
    let divTwo = document.createElement('div');
    let granTotal = document.createTextNode("grand total : " +Math.round(gTotal));
-   let gstAmt = document.createTextNode(`Gst : ${gst0} Sgst: ${splitTax} Cgst: ${splitTax}`);
+   let gstAmt = document.createTextNode(`Gst : ${gst0} `);
+   let sgstAmt =document.createTextNode(`Sgst: ${splitTax}`);
+   let cgstAmt = document.createTextNode(`Cgst: ${splitTax}`);
    let rAmt = document.createTextNode("retail : " + rt);
    let pureProfit = rt - bt;
+   let brln = document.createElement('br');
    console.log(pureProfit);
    total.appendChild(bAmt);
    div.appendChild(rAmt);
    divOne.appendChild(gstAmt);
+   divOneByone.appendChild(sgstAmt);
+   divOneByone.appendChild(brln);
+   divOneBytwo.appendChild(cgstAmt);
+   divOneBytwo.appendChild(brln);
    divTwo.appendChild(granTotal);
    total.appendChild(div);
    total.appendChild(divOne);
+   total.appendChild(divOneBytwo);
+   total.appendChild(divOneByone);
    total.appendChild(divTwo);
    liste.appendChild(total);
 }
