@@ -299,7 +299,31 @@ shoppy.addEventListener('click',() => {
   liste.classList.toggle('open');
 });
 function save(){
+  let data = document.getElementById('qtyL');
+  let qtyNitem = [];
+  if(data.rows.length > 1){
+    let rlen = data.rows.length;
+    let clen = data.rows[0].cells.length;
+        for(let i = 0;i < rlen; i++){
+          let complete = [];
+           for(let j = 0; j < clen; j++){
+              if(data.rows[i].cells[j]){
+                 let tdata = data.rows[i].cells[j].innerText;
+                  //qtyNitem.push([tdata]);
+                  complete.push(tdata);
+               }else{
+            let tdata = data.rows[i].firstElementChild.id;
+            //qtyNitem.push([tdata]);
+            complete.push(tdata);
+      }
+    }
+    qtyNitem.push(complete);
+  }
   alert("saved");
-
+  }else{
+    alert("please select an item in order to save")
+  }
+  console.log(qtyNitem);
+  postServer(qtyNitem,'/saveit');
 }
 

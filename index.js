@@ -71,3 +71,11 @@ app.get('/getItem',(req,resp)=>{
   resp.end();
 });
 //#endregion
+//#region save server 
+app.post('/saveit',(request,response) => {
+  console.log("save request indicated!");
+  console.log(request.body);
+  
+  response.end();
+});
+//#endregion
