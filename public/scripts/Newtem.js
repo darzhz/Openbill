@@ -298,4 +298,8 @@ shoppy.addEventListener('click',() => {
   showCart();
   liste.classList.toggle('open');
 });
+function save(){
+  alert("saved");
+
+}
 
