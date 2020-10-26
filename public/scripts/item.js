@@ -28,6 +28,7 @@ function tabledatthing(name,code,p1,p2,gst){
 }
 let addObk = {};
 let n = 1;
+
 function additem(){
 let myObj = {};
 let name = document.getElementById('itemName').value;
@@ -56,7 +57,13 @@ let options = {
 
 fetch('/api',options)
 //console.log(name+Code+price1+retail+gst);
+// name.value = null;
+// Code.value = null;
+// price1.value = null;
+// retail.value = null;
+// gst.value = null;
 }
+
 let op = {
   method:'GET'
 };

@@ -3,8 +3,11 @@ const dataStore = require('nedb');
 const csv = require('csv-parser');
 const fs = require('fs');
 let currentSearch = [];
+let billnumNdate = [];
 let list = [];
 const { request, response } = require('express');
+const { Console } = require('console');
+const { runInThisContext } = require('vm');
 const app = express();
 const database = new dataStore('database.db');
 database.loadDatabase();
@@ -74,10 +77,41 @@ app.get('/getItem',(req,resp)=>{
 });
 //#endregion
 //#region save server 
+let currentEntry = [];
 app.post('/saveit',(request,response) => {
   console.log("save request indicated!");
-  console.log(request.body);
-  
+  let data = request.body;
+  for(let i = 0; i < data.length; i++){
+    let joined = data[i].join(",");
+    //writeTocsv(joined + "\n");
+    currentEntry.push(joined);
+  }
+  readFromcsv()
   response.end();
 });
+async function writeTocsv(text,billname){
+  fs.appendFile(`${billname}.csv`,text,function (err,data) {
+    if(err){
+      console.log(err);
+    }
+   // console.log(data);
+  }) ;
+ }
+async function readFromcsv(){
+    fs.createReadStream('bill.csv')
+      .pipe(csv())
+        .on('data',(row) => {
+          //console.log(row);
+          billnumNdate.push(row);
+        })
+          .on('end',() => {
+            console.log("csv file read")
+            let bill = billnumNdate[billnumNdate.length-1]["billnum"];
+            currentEntry.map((elem) => {
+              writeTocsv(elem+"\n",bill);
+            })
+          })
+  }
+//readFromcsv();
+// writeTocsv("let's see if this works")
 //#endregion
