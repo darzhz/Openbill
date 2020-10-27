@@ -1,3 +1,4 @@
+//#region db stuff
 const express = require('express');
 const dataStore = require('nedb');
 const csv = require('csv-parser');
@@ -52,6 +53,7 @@ app.get('/getb',(req,resp)=>{
       currentSearch.push(doc);
     });
 }
+//#endregion
 //#region this stuff is pretty glitchy
 async function getdetails(word,dir){
   database.find({ "_id": word }, (err, doc) => {
@@ -90,7 +92,7 @@ app.post('/saveit',(request,response) => {
   response.end();
 });
 async function writeTocsv(text,billname){
-  fs.appendFile(`${billname}.csv`,text,function (err,data) {
+  fs.appendFile("previous/"+`${billname}.csv`,text,function (err,data) {
     if(err){
       console.log(err);
     }
@@ -106,12 +108,21 @@ async function readFromcsv(){
         })
           .on('end',() => {
             console.log("csv file read")
-            let bill = billnumNdate[billnumNdate.length-1]["billnum"];
+            let bill = parseInt(billnumNdate[billnumNdate.length-1]["billnum"])+1;
             currentEntry.map((elem) => {
               writeTocsv(elem+"\n",bill);
             })
+            updateBillcount(bill);
           })
   }
-//readFromcsv();
-// writeTocsv("let's see if this works")
-//#endregion
+  async function updateBillcount(num){
+    let date = new Date();
+    let dfor = date.toISOString()
+    let format = "\n"+num+","+dfor
+    fs.appendFile('bill.csv',format,function (err,data) {
+      if(err){
+        console.log(err);
+      }
+    })
+    console.log(format);
+  }
