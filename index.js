@@ -43,6 +43,19 @@ app.get('/getb',(req,resp)=>{
   resp.json(currentSearch[len]);
   resp.end();
 });
+app.get('/crntbillnum',(req,resp) => {
+  let billy = [];
+  fs.createReadStream('bill.csv')
+      .pipe(csv())
+        .on('data',(row) => {
+          billy.push(row);
+        })
+          .on('end',() => {
+            console.log("csv file read")
+            let bill = parseInt(billy[billy.length-1]["billnum"])+1;
+            resp.json(bill);
+})
+})
  function dataGo(word){
   const pased =  new RegExp(word, "i");
   database.find({ "Code": { "$regex": pased } }, (err, doc) => {
@@ -111,6 +124,7 @@ async function readFromcsv(){
             let bill = parseInt(billnumNdate[billnumNdate.length-1]["billnum"])+1;
             currentEntry.map((elem) => {
               writeTocsv(elem+"\n",bill);
+              
             })
             updateBillcount(bill);
           })

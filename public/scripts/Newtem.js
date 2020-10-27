@@ -3,6 +3,7 @@ let button = document.getElementsByTagName("button");
 let cart = [];
 let shoppy = document.getElementById('cart');
 let liste = document.querySelector('.list');
+receipt = document.getElementById('receiptNO');
 function wait(ms){
   let now = Date.now()
 while(true){
@@ -296,6 +297,8 @@ shoppy.addEventListener('click',() => {
   }
 
   showCart();
+  updateBillNO();
+
   liste.classList.toggle('open');
 });
 function save(){
@@ -325,5 +328,14 @@ function save(){
   }
   console.log(qtyNitem);
   postServer(qtyNitem,'/saveit');
+}
+async function updateBillNO(){
+  receipt.innerText = null;
+  let resp = await fetch('/crntbillnum')
+      .then((result) => result.json())
+      .then((data) =>  {
+      let txt = document.createTextNode("receipt. "+data);
+      receipt.appendChild(txt);
+      }) 
 }
 
