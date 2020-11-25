@@ -3,12 +3,12 @@ let button = document.getElementsByTagName("button");
 let cart = [];
 let shoppy = document.getElementById('cart');
 let liste = document.querySelector('.list');
-receipt = document.getElementById('receiptNO');
+let receipt = document.getElementById('receiptNO');
 function wait(ms){
   let now = Date.now()
 while(true){
   let end = Date.now()
-  console.log("waiting");
+  //console.log("waiting");
   if(end > now+ms){
     break;
   }
@@ -184,7 +184,8 @@ async function showCart(){
     button.addEventListener("click",() => {
       let x = document.getElementById('qtyL');
       let id =  cart.indexOf(button.id);
-      cart.pop(id);
+      console.log("this is" + id + button.id + "\n"+ cart);
+      cart.splice(id,1);
       if(x){
         x.remove();
       }
@@ -322,7 +323,7 @@ function save(){
     }
     qtyNitem.push(complete);
   }
-  alert("saved");
+  //alert("saved");
   }else{
     alert("please select an item in order to save")
   }
@@ -337,5 +338,13 @@ async function updateBillNO(){
       let txt = document.createTextNode("receipt. "+data);
       receipt.appendChild(txt);
       }) 
+}
+async function saveNprint(){
+  //save();
+  let r = /\d+/;
+  let data = receipt.innerText;
+  let justNum = parseInt(data.match(r)[0]);
+  let req = {"num":justNum};
+  postServer(req,'shareToprint');
 }
 

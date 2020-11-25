@@ -140,3 +140,10 @@ async function readFromcsv(){
     })
     console.log(format);
   }
+  //#region printstuff
+  app.post('/shareToprint',(req,resp) => {
+    console.log("print indicated!")
+    let data = req.body;
+    console.log(data["num"]);
+  });
+  //#endregion
