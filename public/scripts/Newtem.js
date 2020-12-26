@@ -345,6 +345,8 @@ async function saveNprint(){
   let data = receipt.innerText;
   let justNum = parseInt(data.match(r)[0]);
   let req = {"num":justNum};
+  //save();
   postServer(req,'shareToprint');
+  window.open('receipt.html','receipt','width=600,height=1200');
 }
 

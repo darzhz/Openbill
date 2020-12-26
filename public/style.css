@@ -3,7 +3,7 @@
     column-width: 250px;
 }
 
-th {
+th,td {
     width: 100vh;
     column-width: 100vh;
     border-collapse: collapse;
@@ -11,14 +11,15 @@ th {
 
 td {
     border: none;
+    text-align: center;
 }
 
 table,
-th,
-td {
+th {
     border-left: none;
     border-right: none;
     border-top: 4px solid black;
+    border-bottom: 4px solid black;
 }
 
 #title {
